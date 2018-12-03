@@ -31,7 +31,7 @@ var config = {
       disabled: true
     }
   ],
-  onChange: (dialogApi, changeData) => {
+  onChange: function (dialogApi, changeData) {
     console.log('onChange fired');
     debugger;
 
@@ -40,7 +40,7 @@ var config = {
     var toggle = data.anyterms === 'checked' ? dialogApi.enable : dialogApi.disable;
     toggle('uniquename');
   },
-  onAction: (dialogApi, actionData) => {
+  onAction: function (dialogApi, actionData) {
     if (actionData.name === 'uniquename') {
       dialogApi.redial({
         title: 'Redial Demo - Page 2',
@@ -74,7 +74,7 @@ var config = {
         initialData: {
           choosydata: ''
         },
-        onAction: (dialogApi, actionData) => {
+        onAction: function (dialogApi, actionData) {
           var data = dialogApi.getData();
 
           var result = 'you chose wisely: ' + data.choosydata;
@@ -93,10 +93,10 @@ var config = {
 tinymce.init({
   selector: 'textarea',
   toolbar: 'pet-example',
-  setup: (editor) => {
+  setup: function (editor) {
     editor.ui.registry.addButton('pet-example', {
       icon: 'code-sample',
-      onAction: () => {
+      onAction: function () {
         editor.windowManager.open(config)
       }
     })
